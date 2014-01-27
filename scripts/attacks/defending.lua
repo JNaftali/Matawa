@@ -95,6 +95,7 @@ function mtw.atk_start(attacker, weapon, attack)
  if mtw.my.class == "rogue" and table.contains(mtw.skills, "Flourish") and mtw.toggles.flourishing and mtw.balance.flourish then
   mtw.set_balance("flourish "..attacker)
  end
+raiseEvent("mtw.atk.start", attacker, weapon, attack)
 end
 
 --after delay
@@ -173,6 +174,7 @@ function mtw.atk_hit(attacker, weapon, attack)
  if mtw.attacks[attack].class ~= "priest" then
   mtw.check.reckless = true
  end
+raiseEvent("mtw.atk.hit", attacker, weapon, attack)
 end
 
 --Run on missed incoming attacks
@@ -188,6 +190,7 @@ function mtw.atk_miss(attacker, weapon, attack)
  end
 --Make sure to end the attack properly
  mtw.atk_end(attacker, weapon, attack)
+raiseEvent("mtw.atk.miss", attacker, weapon, attack)
 end
 
 --Run on defended incoming attacks
@@ -220,6 +223,7 @@ function mtw.atk_defend(attacker, weapon, attack, defense)
    mtw.check.reckless = true
   end
  end
+raiseEvent("mtw.atk.defend", attacker, weapon, attack, defense)
 end
 
 function mtw.reset_attack(attack)
